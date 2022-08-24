@@ -1,12 +1,247 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulário Convert JSON</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.css" rel="stylesheet" />
 </head>
 <body>
-    
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
+            Criar Json
+          </a>
+        </div>
+    </nav>
+    <br />
+    <div class="container-fluid !direction !spacing">
+        <div class="row">
+            <div class="col-3">
+            <!-- Tab navs -->
+            <div class="nav flex-column nav-tabs text-center" id="v-tabs-tab" role="tablist" aria-orientation="vertical">
+                <a class="nav-link active" id="v-tabs-home-tab" data-mdb-toggle="tab" href="#v-tabs-home" role="tab" aria-controls="v-tabs-home" aria-selected="true">Home</a>
+                <a class="nav-link" id="v-tabs-profile-tab" data-mdb-toggle="tab" href="#v-tabs-profile" role="tab" aria-controls="v-tabs-profile" aria-selected="false">Procedimento</a>
+                <a class="nav-link" id="v-tabs-messages-tab" data-mdb-toggle="tab" href="#v-tabs-messages" role="tab" aria-controls="v-tabs-messages" aria-selected="false">Resultados</a>
+            </div>
+            <!-- Tab navs -->
+            </div>
+        
+            <div class="col-9">
+            <!-- Tab content -->
+            <div class="tab-content" id="v-tabs-tabContent">
+                <div class="tab-pane fade show active" id="v-tabs-home" role="tabpanel" aria-labelledby="v-tabs-home-tab">Home content</div>
+                <div class="tab-pane fade" id="v-tabs-profile" role="tabpanel" aria-labelledby="v-tabs-profile-tab">
+                    <form id="contact-form" class="row g-3">
+                        <div class="col-md-6">
+                        <label for="cnpj_ug" class="form-label">cnpj_ug</label>
+                        <input type="text" class="form-control" name="cnpj_ug" id="cnpj_ug" maxlength="14" required>
+                        </div>
+                        <div class="col-md-6">
+                        <label for="id_contratacao" class="form-label">id_contratacao</label>
+                        <input type="text" class="form-control" name="id_contratacao" id="id_contratacao" maxlength="11">
+                        </div>
+                        <div class="col-6">
+                        <label for="numero_processo" class="form-label">numero_processo</label>
+                        <input type="text" class="form-control" name="numero_processo" id="numero_processo" maxlength="20">
+                        </div>
+                        <div class="col-6">
+                        <label for="ano_processo" class="form-label">ano_processo</label>
+                        <input type="number" class="form-control" name="ano_processo" id="ano_processo" maxlength="4">
+                        </div>
+                        <div class="col-md-6">
+                        <label for="numero_procedimento" class="form-label">numero_procedimento</label>
+                        <input type="number" class="form-control" name="numero_procedimento" id="numero_procedimento" maxlength="6">
+                        </div>
+                        <div class="col-6">
+                        <label for="ano_procedimento" class="form-label">ano_procedimento</label>
+                        <input type="number" class="form-control" name="ano_procedimento" id="ano_procedimento" maxlength="4">
+                        </div>
+                        <div class="col-md-6">
+                        <label for="data_publicacao" class="form-label">data_publicacao</label>
+                        <input type="date" class="form-control" name="data_publicacao" id="data_publicacao">
+                        </div>
+                        <div class="col-6">
+                        <label for="numero_lei" class="form-label">numero_lei</label>
+                        <input type="number" class="form-control" name="numero_lei" id="numero_lei" maxlength="6">
+                        </div>
+                        <div class="col-md-6">
+                        <label for="ano_lei" class="form-label">ano_lei</label>
+                        <input type="number" class="form-control" name="ano_lei" id="ano_lei" maxlength="4">
+                        </div>
+                        <div class="col-md-6">
+                        <label for="cod_procedimento" class="form-label">cod_procedimento</label>
+                        <select name="cod_procedimento" id="cod_procedimento" class="form-select">
+                            <option selected></option>
+                            <option>Dispensa</option>
+                            <option>Inexigibilidade</option>
+                            <option>Concorrência pública</option>
+                            <option>Tomada de Preços</option>
+                            <option>Carta Convite</option>
+                            <option>Concurso</option>
+                            <option>Leilão</option>
+                            <option>Licitação Internacional</option>
+                            <option>Pregão Eletrônico</option>
+                            <option>Pregão Presencial</option>
+                            <option>Credenciamento</option>
+                            <option>RDC Eletrônico</option>
+                            <option>RDC Presencial</option>
+                            <option>Adesão a Ata de Registro de Preço</option>
+                            <option>Diálogo competitivo</option>
+                            <option>Procedimento da Lei 13.393/2016</option>
+                            <option>Outros(AC)</option>
+                        </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="criterio" class="form-label">criterio</label>
+                            <select name="criterio" id="criterio" class="form-select">
+                                <option selected></option>
+                                <option>Menor Preço</option>
+                                <option>Melhor técnica ou conteúdo artístico</option>
+                                <option>Técnica e preço</option>
+                                <option>Maior lance ou oferta</option>
+                                <option>Menor valor de tarifa</option>
+                                <option>Maior oferta outorga</option>
+                                <option>Melhor preço</option>
+                                <option>Melhor projeto</option>
+                                <option>Maior retorno econômico</option>
+                                <option>Maior desconto</option>
+                                <option>Menor valor tarifa</option>
+                                <option>Maior oferta outorga</option>
+                                <option>Menor valor tarifa com maior oferta outorga</option>
+                                <option>Menor valor tarifa com melhor oferta de pagamento</option>
+                                <option>Menor oferta de pagamento</option>
+                                <option>Melhor proposta técnica, com preço fixado no edital</option>
+                                <option>Menor valor da tarifa com o de melhor técnica</option>
+                                <option>Maior oferta outorga com melhor técnica</option>
+                                <option>Maior oferta outorga com oferta de pagamento</option>
+                                <option>Nenhum</option>
+                                <option>Melhor combinação de técnica e preço</option>
+                                <option>Melhor destinaçãp de bens alienados</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="finalidade" class="form-label">finalidade</label>
+                            <select name="finalidade" id="finalidade" class="form-select">
+                                <option selected></option>
+                                <option>Alienação de bens móveis ou imóveis</option>
+                                <option>Aquisição de bens</option>
+                                <option>Aquisição de bens e serviços</option>
+                                <option>Aquisição de serviços</option>
+                                <option>Concessão de direito real de uso</option>
+                                <option>Concessão de serviços</option>
+                                <option>Concessão de serviços públicos precedida de execução de obra pública</option>
+                                <option>Concessão de uso</option>
+                                <option>Contratação de obras</option>
+                                <option>Contratação de obras e serviços de engenharia</option>
+                                <option>Contratação de serviços de engenharia</option>
+                                <option>Credenciamento</option>
+                                <option>Permissão</option>
+                                <option>Pré-qualificação</option>
+                                <option>Registro de preços</option>
+                                <option>Locação de bens</option>
+                                <option>Locação de bens e serviços</option>
+                                <option>Locação de serviços</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="sistema_pregao" class="form-label">sistema_pregao</label>
+                            <input type="text" class="form-control" name="sistema_pregao" id="sistema_pregao" maxlength="100">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="data_adesao" class="form-label">data_adesao</label>
+                            <input type="date" class="form-control" name="data_adesao" id="data_adesao">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="regime_execucao" class="form-label">regime_execucao</label>
+                            <select name="regime_execucao" id="regime_execucao" class="form-select">
+                                <option selected></option>
+                                <option>Empreitada por preço global</option>
+                                <option>Empreitada por preço unitário</option>
+                                <option>Empreitada integral</option>
+                                <option>Contratação por tarefa</option>
+                                <option>Fornecimento</option>
+                                <option>Fornecimento e prestação de serviço associado</option>
+                                <option>Contratação integrada</option>
+                                <option>Contratação semi-integrada</option>
+                                <option>Outros</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <label for="objeto" class="form-label">objeto</label>
+                            <input type="text" class="form-control" name="objeto" id="objeto" maxlength="400">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="valor_estimado" class="form-label">valor_estimado</label>
+                            <input type="text" class="form-control" name="valor_estimado" id="valor_estimado">
+                        </div>
+                        <div class="col-6">
+                            <label for="data_sessao" class="form-label">data_sessao</label>
+                            <input type="date" class="form-control" name="data_sessao" id="data_sessao">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="cpf_autoridade" class="form-label">cpf_autoridade</label>
+                            <input type="text" class="form-control" name="cpf_autoridade" id="cpf_autoridade" maxlength="11">
+                        </div>
+                        <div class="col-12">
+                        <button type="submit" class="btn btn-primary">GERAR JSON</button>
+                        </div>
+                    </form>
+                    <div class="results">
+                        <pre class="visually-hidden"></pre>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="v-tabs-messages" role="tabpanel" aria-labelledby="v-tabs-messages-tab">Messages content</div>
+            </div>
+            <!-- Tab content -->
+            </div>
+        </div>
+    </div>
+<footer>
+    <br>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <!-- MDB -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/4.4.0/mdb.min.js"></script>
+    <script src="js/FileSaver.js"></script>
+    <script>
+        function handleFormSubmit(event) {
+        event.preventDefault();
+        
+        const data = new FormData(event.target);
+        
+        const formJSON = Object.fromEntries(data.entries());
+
+        // for multi-selects, we need special handling
+        //formJSON.snacks = data.getAll('snacks');
+        const results = document.querySelector('.results pre');
+        results.innerText = JSON.stringify(formJSON, null, 2);
+        let blob = new Blob( [results.innerText], {type: "text/plain;charset=utf-8"} );
+
+        let dataYear = new Date();
+        datafull = dataYear.getFullYear();
+        
+        let resultFilter = JSON.stringify(data.get("cnpj_ug"));
+        let resultDataPublica = JSON.stringify(data.get("data_publicacao"));
+        console.log(resultFilter, resultDataPublica);
+        saveAs(blob, datafull+"_"+resultFilter.replace(/[^\d]+/g,'')+"_procedimento.json");
+        
+        
+        }
+
+        const form = document.querySelector('#contact-form');
+        form.addEventListener('submit', handleFormSubmit);
+
+    </script>
 </body>
 </html>
