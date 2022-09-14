@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Poppins:wght@400;500;700&display=swap');
+body {
+    background-color: #eae7e7;
+    font-family: 'Manrope', sans-serif;
+}
+
+.row {
+    background-color: #fff;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.text-logo {
+    position: absolute;
+    left: 70px;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.h5 {
+    font-weight: 700;
+}
+
+.sidebar-right {
+    background-color: #eae7e7;
+    padding-left: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.alert-ultra-dark {
+    color: #f1f1f1;
+    background-color: #333;
+    border-color: #777;
+}
+
+.fa {
+    margin-right: 20px;
+    font-size: 22px !important;
+}
+
+.nav-link {
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-top: 12px;
+    padding-left: 20px;
+    padding-bottom: 12px;
+    color: #333;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.nav-link:hover {
+    background-color: #333;
+    color: #f1f1f1;
+}
+
+.nav-pills {
+    --bs-nav-link-hover-color: #f1f1f1;
+}
+
+.nav-pills .nav-link {
+    border-radius: 20px 0px 0px 20px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #333;
+    background-color: #fff;
+}
+
+.content-principal {
+    background-color: #eae7e7;
+}
+
+.tab-fade{
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out;
+    transition-property: color, background-color, border-color;
+    transition-duration: 0.15s, 0.15s, 0.15s;
+    transition-timing-function: ease-in-out, ease-in-out, ease-in-out;
+    transition-delay: 0s, 0s, 0s;
+}
