@@ -9,6 +9,7 @@
 	<link rel="icon" href="images/json-icon.png" sizes="192x192" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -125,7 +126,7 @@
                             <form id="form-procedimento" class="row g-3">
                                 <div class="col-md-6">
                                     <label for="cnpj_ug_procedimento" class="form-label">cnpj_ug<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cnpj_ug_procedimento" id="cnpj_ug_procedimento" maxlength="14" >
+                                    <input type="text" data-mask="00.000.000/0000-00" class="form-control" name="cnpj_ug_procedimento" id="cnpj_ug_procedimento" maxlength="14" >
                                 </div>
                                 <div class="col-md-6">
                                     <label for="id_contratacao_procedimento" class="form-label">id_contratacao<span class="required">&nbsp;*</span></label>
@@ -137,7 +138,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_processo_procedimento" class="form-label">ano_processo<span class="required">&nbsp;*</span></label>
-                                    <input type="text" data-mask="0000" class="form-control" name="ano_processo_procedimento" id="ano_processo_procedimento" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_processo_procedimento" id="ano_processo_procedimento" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="numero_procedimento" class="form-label">numero_procedimento<span class="required">&nbsp;*</span></label>
@@ -145,7 +146,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_procedimento" class="form-label">ano_procedimento<span class="required">&nbsp;*</span></label>
-                                    <input type="text" data-mask="0000" class="form-control" name="ano_procedimento" id="ano_procedimento" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_procedimento" id="ano_procedimento" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="data_publicacao_procedimento" class="form-label">data_publicacao</label>
@@ -157,7 +158,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_lei_procedimento" class="form-label">ano_lei<span class="required">&nbsp;*</span></label>
-                                    <input type="text" data-mask="0000" class="form-control" name="ano_lei_procedimento" id="ano_lei_procedimento" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_lei_procedimento" id="ano_lei_procedimento" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cod_procedimento" class="form-label">cod_procedimento<span class="required">&nbsp;*</span></label>
@@ -264,7 +265,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="valor_estimado_procedimento" class="form-label">valor_estimado</label>
-                                    <input type="text" class="form-control" name="valor_estimado_procedimento" id="valor_estimado_procedimento">
+                                    <input type="text" data-mask="#.##0,00" data-mask-reverse="true" class="form-control" name="valor_estimado_procedimento" id="valor_estimado_procedimento">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="data_sessao_procedimento" class="form-label">data_sessao</label>
@@ -272,7 +273,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cpf_autoridade_procedimento" class="form-label">cpf_autoridade<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cpf_autoridade_procedimento" id="cpf_autoridade_procedimento" maxlength="11">
+                                    <input type="text" data-mask="000.000.000-00" class="form-control" name="cpf_autoridade_procedimento" id="cpf_autoridade_procedimento" maxlength="11">
                                 </div>
                                 <div class="col-md-12">
                                     <br>
@@ -310,7 +311,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="valor_resultado" class="form-label">valor</label>
-                                    <input type="text" class="form-control" name="valor_resultado" id="valor_resultado">
+                                    <input type="text" data-mask="#.##0,00" data-mask-reverse="true" class="form-control" name="valor_resultado" id="valor_resultado">
                                 </div>
                                 <div class="col-md-12">
                                     <br>
@@ -337,11 +338,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_ata_registro" class="form-label">ano<span class="required">&nbsp;*</span></label>
-                                    <input type="number" class="form-control" name="ano_ata_registro" id="ano_ata_registro" maxlength="4">
+                                    <input type="text"  data-mask="0000" placeholder="aaaa" class="form-control" name="ano_ata_registro" id="ano_ata_registro" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="valor_ata_registro" class="form-label">valor<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="valor_ata_registro" id="valor_ata_registro">
+                                    <input type="text" data-mask="#.##0,00" data-mask-reverse="true" class="form-control" name="valor_ata_registro" id="valor_ata_registro">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="data_inicio_ata_registro" class="form-label">data_inicio<span class="required">&nbsp;*</span></label>
@@ -376,11 +377,11 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_cadastro_orgao" class="form-label">ano<span class="required">&nbsp;*</span></label>
-                                    <input type="number" class="form-control" name="ano_cadastro_orgao" id="ano_cadastro_orgao" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_cadastro_orgao" id="ano_cadastro_orgao" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cnpj_ug_cadastro_orgao" class="form-label">cnpj_ug<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cnpj_ug_cadastro_orgao" id="cnpj_ug_cadastro_orgao" maxlength="14">
+                                    <input type="text" data-mask="00.000.000/0000-00" class="form-control" name="cnpj_ug_cadastro_orgao" id="cnpj_ug_cadastro_orgao" maxlength="14">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="perfil_cadastro_orgao" class="form-label">perfil<span class="required">&nbsp;*</span></label>
@@ -420,7 +421,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cpf_cnpj_cadastro_licitante" class="form-label">cpf_cnpj<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cpf_cnpj_cadastro_licitante" id="cpf_cnpj_cadastro_licitante" maxlength="14">
+                                    <input type="text" data-mask="00000000000000" class="form-control" name="cpf_cnpj_cadastro_licitante" id="cpf_cnpj_cadastro_licitante" maxlength="14">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="numero_cadastro_licitante" class="form-label">numero<span class="required">&nbsp;*</span></label>
@@ -428,7 +429,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_cadastro_licitante" class="form-label">ano<span class="required">&nbsp;*</span></label>
-                                    <input type="number" class="form-control" name="ano_cadastro_licitante" id="ano_cadastro_licitante" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_cadastro_licitante" id="ano_cadastro_licitante" maxlength="4">
                                 </div>
                                 <div class="col-md-12">
                                     <br>
@@ -447,7 +448,7 @@
                             <form id="form-contrato" class="row g-3">
                                 <div class="col-md-6">
                                     <label for="cnpj_ug_contrato" class="form-label">cnpj_ug<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cnpj_ug_contrato" id="cnpj_ug_contrato" maxlength="14">
+                                    <input type="text" data-mask="00.000.000/0000-00" class="form-control" name="cnpj_ug_contrato" id="cnpj_ug_contrato" maxlength="14">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="numero_processo_contrato" class="form-label">numero_processo<span class="required">&nbsp;*</span></label>
@@ -455,15 +456,15 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_processo_contrato" class="form-label">ano_processo<span class="required">&nbsp;*</span></label>
-                                    <input type="number" class="form-control" name="ano_processo_contrato" id="ano_processo_contrato" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_processo_contrato" id="ano_processo_contrato" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="numero_contrato" class="form-label">numero_contrato<span class="required">&nbsp;*</span></label>
-                                    <input type="number" class="form-control" name="numero_contrato" id="numero_contrato" maxlength="6">
+                                    <input type="text" data-mask="000000" class="form-control" name="numero_contrato" id="numero_contrato" maxlength="6">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="ano_contrato" class="form-label">ano_contrato<span class="required">&nbsp;*</span></label>
-                                    <input type="number" class="form-control" name="ano_contrato" id="ano_contrato" maxlength="4">
+                                    <input type="text" data-mask="0000" placeholder="aaaa" class="form-control" name="ano_contrato" id="ano_contrato" maxlength="4">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="id_contratacao_contrato" class="form-label">id_contratacao<span class="required">&nbsp;*</span></label>
@@ -475,7 +476,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cpf_cnpj_contrato" class="form-label">cpf_cnpj<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cpf_cnpj_contrato" id="cpf_cnpj_contrato" maxlength="14">
+                                    <input type="text" data-mask="00000000000000" class="form-control" name="cpf_cnpj_contrato" id="cpf_cnpj_contrato" maxlength="14">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="objeto_contrato" class="form-label">objeto<span class="required">&nbsp;*</span></label>
@@ -513,7 +514,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="valor_contrato" class="form-label">valor<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="valor_contrato" id="valor_contrato">
+                                    <input type="text" data-mask="#.##0,00" data-mask-reverse="true" class="form-control" name="valor_contrato" id="valor_contrato">
                                 </div>
                                 <div class="col-md-12">
                                     <br>
@@ -540,7 +541,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="cpf_cnpj_sancao" class="form-label">cpf_cnpj<span class="required">&nbsp;*</span></label>
-                                    <input type="text" class="form-control" name="cpf_cnpj_sancao" id="cpf_cnpj_sancao" maxlength="14">
+                                    <input type="text" data-mask="00000000000000" class="form-control" name="cpf_cnpj_sancao" id="cpf_cnpj_sancao" maxlength="14">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="tipo_sancao" class="form-label">tipo<span class="required">&nbsp;*</span></label>
@@ -588,7 +589,7 @@
         </div>
     </div>
     <footer>
-        <p><span id="date-year"></span> - Secretaria de Estado da Agricutura Familiar-SAF - Desenvolvido por: Departamento de Tecnologia da Informação - DTI - Versão 0.15</p>
+        <p><span id="date-year"></span> - Secretaria de Estado da Agricutura Familiar-SAF - Desenvolvido por: Departamento de Tecnologia da Informação - DTI - Versão 0.20</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
@@ -596,6 +597,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.29/dist/sweetalert2.all.min.js"></script>
     <script src="https://use.fontawesome.com/cbdaed9b7d.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
     <script src="js/jquery.mask.min.js"></script>
     <script src="js/FileSaver.js"></script>
     <script src="js/GeraJSONForm.js"></script>

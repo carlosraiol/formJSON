@@ -1,15 +1,89 @@
 let elementValue;
 let isValid = true;
 
+function validarCNPJ(cnpj) {
+  cnpj = cnpj.replace(/[^\d]+/g,'');
+
+  if(cnpj == '') return toastErrorCNPJ();
+   
+  if (cnpj.length != 14)
+      return toastErrorCNPJ();
+
+  // Elimina CNPJs invalidos conhecidos
+  if (cnpj == "00000000000000" || 
+      cnpj == "11111111111111" || 
+      cnpj == "22222222222222" || 
+      cnpj == "33333333333333" || 
+      cnpj == "44444444444444" || 
+      cnpj == "55555555555555" || 
+      cnpj == "66666666666666" || 
+      cnpj == "77777777777777" || 
+      cnpj == "88888888888888" || 
+      cnpj == "99999999999999")
+      return toastErrorCNPJ();
+       
+  // Valida DVs
+  tamanho = cnpj.length - 2
+  numeros = cnpj.substring(0,tamanho);
+  digitos = cnpj.substring(tamanho);
+  soma = 0;
+  pos = tamanho - 7;
+  for (i = tamanho; i >= 1; i--) {
+    soma += numeros.charAt(tamanho - i) * pos--;
+    if (pos < 2)
+          pos = 9;
+  }
+  resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+  if (resultado != digitos.charAt(0))
+      return toastErrorCNPJ();
+       
+  tamanho = tamanho + 1;
+  numeros = cnpj.substring(0,tamanho);
+  soma = 0;
+  pos = tamanho - 7;
+  for (i = tamanho; i >= 1; i--) {
+    soma += numeros.charAt(tamanho - i) * pos--;
+    if (pos < 2)
+          pos = 9;
+  }
+  resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
+  if (resultado != digitos.charAt(1))
+        return toastErrorCNPJ();
+         
+  return true;
+
+}
+
 const getDateYear = () => {
   let dataYear = new Date();
   let dataYearFull = dataYear.getFullYear();
   return dataYearFull;
 }
 
+const getUnmask = (value) => {
+  let unmask = value.replace(/[^0-9]/g, '');
+  return unmask;
+}
+
+const getCurrencyConvert = (value) => {
+  let curr = getUnmask(value);
+  let beforeDot = curr.substring(0, curr.length-2);
+  let afterDot = curr.substring(curr.length-2, curr.length);
+  let convert = Number.parseFloat(beforeDot+"."+afterDot);
+  return convert;
+}
+
 const getValueElement = (value) => {
   let xValue = $(value).get(0).innerText;
   return xValue;
+}
+
+const toastErrorCNPJ = () => {
+  let toast = Swal.fire({
+    icon: 'error',
+    title: 'CNPJ Inválido!',
+  })
+  return toast;
 }
   
 const toastSuccess = (value) => {
@@ -37,7 +111,7 @@ const procedimentoSubmit = (event) => {
   const formJSON = Object.fromEntries(data.entries());
 
   const procedimento = {
-    cnpj_ug: formJSON["cnpj_ug_procedimento"],
+    cnpj_ug: getUnmask(formJSON["cnpj_ug_procedimento"]),
     id_contratacao: formJSON["id_contratacao_procedimento"],
     numero_processo: formJSON["numero_processo_procedimento"],
     ano_processo: parseInt(formJSON["ano_processo_procedimento"]),
@@ -53,13 +127,14 @@ const procedimentoSubmit = (event) => {
     data_adesao: formJSON["data_adesao_procedimento"],
     regime_execucao: parseInt(formJSON["regime_execucao_procedimento"]),
     objeto: formJSON["objeto_procedimento"],
-    valor_estimado: parseFloat(formJSON["valor_estimado_procedimento"]),
+    valor_estimado: getCurrencyConvert(formJSON["valor_estimado_procedimento"]),
     data_sessao: formJSON["data_sessao_procedimento"],
-    cpf_autoridade: formJSON["cpf_autoridade_procedimento"]
+    cpf_autoridade: getUnmask(formJSON["cpf_autoridade_procedimento"]),
   }
 
   let procedimentoJSON = JSON.stringify(procedimento)
   let formatResults = procedimentoJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["cnpj_ug_procedimento"] == "") || (formJSON["id_contratacao_procedimento"] == "") || (formJSON["numero_processo_procedimento"] == "")
@@ -93,11 +168,12 @@ const resultadoSubmit = (event) => {
     id_contratacao: formJSON["id_contratacao_resultado"],
     licitacao: parseInt(formJSON["licitacao_resultado"]),
     data: formJSON["data_resultado"],
-    valor: parseFloat(formJSON["valor_resultado"])
+    valor: getCurrencyConvert(formJSON["valor_resultado"])
   }
 
   let resultadoJSON = JSON.stringify(resultado)
   let formatResults = resultadoJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["id_contratacao_resultado"] == "") || (formJSON["licitacao_resultado"] == "") || (formJSON["data_resultado"] == "")) { 
@@ -127,19 +203,20 @@ const ataRegistroSubmit = (event) => {
     id_contratacao: formJSON["id_contratacao_ata_registro"],
     numero: formJSON["numero_ata_registro"],
     ano: parseInt(formJSON["ano_ata_registro"]),
-    valor: parseInt(formJSON["valor_ata_registro"]),
+    valor: getCurrencyConvert(formJSON["valor_ata_registro"]),
     data_inicio: formJSON["data_inicio_ata_registro"],
     data_fim: formJSON["data_fim_ata_registro"]
   }
 
   let ataRegistroJSON = JSON.stringify(ataRegistro)
   let formatResults = ataRegistroJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["id_contratacao_ata_registro"] == "") || (formJSON["numero_ata_registro"] == "") || (formJSON["ano_ata_registro"] == "")
   || (formJSON["valor_ata_registro"] == "") || (formJSON["data_inicio_ata_registro"] == "") || (formJSON["data_fim_ata_registro"] == "")) { 
     isValid = false;
-    toastError();
+    toastError(elementValue);
   }else {
     isValid = true;
     if(isValid == true) {
@@ -164,12 +241,13 @@ const cadOrgaoSubmit = (event) => {
     id_contratacao: formJSON["id_contratacao_cadastro_orgao"],
     numero: formJSON["numero_cadastro_orgao"],
     ano: parseInt(formJSON["ano_cadastro_orgao"]),
-    cnpj_ug: formJSON["cnpj_ug_cadastro_orgao"],
+    cnpj_ug: getUnmask(formJSON["cnpj_ug_cadastro_orgao"]),
     perfil: formJSON["perfil_cadastro_orgao"]
   }
 
   let cadOrgaoJSON = JSON.stringify(cadOrgao)
   let formatResults = cadOrgaoJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["id_contratacao_cadastro_orgao"] == "") || (formJSON["numero_cadastro_orgao"] == "") || (formJSON["ano_cadastro_orgao"] == "")
@@ -206,6 +284,7 @@ const cadLicitanteSubmit = (event) => {
 
   let cadLicitanteJSON = JSON.stringify(cadLicitante)
   let formatResults = cadLicitanteJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["id_contratacao_cadastro_licitante"] == "") || (formJSON["estrageiro_cadastro_licitante"] == "") 
@@ -233,7 +312,7 @@ const contratoSubmit = (event) => {
   const formJSON = Object.fromEntries(data.entries());
 
   const contrato = {
-    cnpj_ug: formJSON["cnpj_ug_contrato"],
+    cnpj_ug: getUnmask(formJSON["cnpj_ug_contrato"]),
     numero_processo: formJSON["numero_processo_contrato"],
     ano_processo: parseInt(formJSON["ano_processo_contrato"]),
     numero_contrato: parseInt(formJSON["numero_contrato"]),
@@ -246,11 +325,12 @@ const contratoSubmit = (event) => {
     data_assinatura: formJSON["data_assinatura_contrato"],
     data_inicio: formJSON["data_inicio_contrato"],
     data_fim: formJSON["data_fim_contrato"],
-    valor: parseFloat(formJSON["valor_contrato"]),
+    valor: getCurrencyConvert(formJSON["valor_contrato"])
   }
 
   let contratoJSON = JSON.stringify(contrato)
   let formatResults = contratoJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["cnpj_ug_contrato"] == "") || (formJSON["numero_processo_contrato"] == "") || (formJSON["ano_processo_contrato"] == "") 
@@ -293,6 +373,7 @@ const sancaoSubmit = (event) => {
 
   let sancaoJSON = JSON.stringify(sancao)
   let formatResults = sancaoJSON.split('""').join("null");
+  formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
   if ((formJSON["id_contratacao_sancao"] == "") || (formJSON["cpf_cnpj_sancao"] == "") || (formJSON["tipo_sancao"] == "")
@@ -365,4 +446,17 @@ $("#btn_gera_json_sancao").click(function(){
 
 $("body").ready(function(){
   $("#date-year").text(getDateYear());
+});
+
+$(document).ready(function(){
+  $("#ano_processo_procedimento, #ano_procedimento, #ano_lei_procedimento, #ano_ata_registro,#ano_cadastro_orgao, #ano_cadastro_licitante, #ano_processo_contrato, #ano_contrato").datepicker({
+    format: "yyyy",
+    viewMode: "years", 
+    minViewMode: "years",
+    autoclose: true
+  });
+});
+
+$("#cnpj_ug_procedimento, #cnpj_ug_cadastro_orgao, #cnpj_ug_contrato").blur(function(){
+  validarCNPJ($(this).val());
 });
