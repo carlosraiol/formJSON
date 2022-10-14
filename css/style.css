@@ -27,6 +27,18 @@ footer {
     font-weight: 700;
 }
 
+.text-logo a {
+    color: #fff;
+}
+
+.text-logo a:link {
+    text-decoration: none;
+}
+
+.text-logo a:hover {
+    color: #ccc;
+}
+
 .h5 {
     font-weight: 700;
 }
