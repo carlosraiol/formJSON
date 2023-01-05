@@ -94,6 +94,9 @@ const toastSuccess = (value) => {
       showConfirmButton: false,
       timer: 3500
   })
+  setTimeout(() => {
+    window.location.reload(true);
+  }, 3500);
   return toast;
 }
   
@@ -166,6 +169,7 @@ const resultadoSubmit = (event) => {
 
   const resultado = {
     id_contratacao: formJSON["id_contratacao_resultado"],
+    cnpj_ug: getUnmask(formJSON["cnpj_ug_resultado"]),
     licitacao: parseInt(formJSON["licitacao_resultado"]),
     data: formJSON["data_resultado"],
     valor: getCurrencyConvert(formJSON["valor_resultado"])
@@ -176,7 +180,7 @@ const resultadoSubmit = (event) => {
   formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
-  if ((formJSON["id_contratacao_resultado"] == "") || (formJSON["licitacao_resultado"] == "") || (formJSON["data_resultado"] == "")) { 
+  if ((formJSON["id_contratacao_resultado"] == "") || (formJSON["cnpj_ug_resultado"] = "") || (formJSON["licitacao_resultado"] == "") || (formJSON["data_resultado"] == "")) { 
     isValid = false;
     toastError(elementValue);
   }else {
@@ -201,6 +205,7 @@ const ataRegistroSubmit = (event) => {
 
   const ataRegistro = {
     id_contratacao: formJSON["id_contratacao_ata_registro"],
+    cnpj_ug: getUnmask(formJSON["cnpj_ug_ata_registro"]),
     numero: formJSON["numero_ata_registro"],
     ano: parseInt(formJSON["ano_ata_registro"]),
     valor: getCurrencyConvert(formJSON["valor_ata_registro"]),
@@ -213,7 +218,7 @@ const ataRegistroSubmit = (event) => {
   formatResults = formatResults.split('NaN').join("null");
   let blob = new Blob([formatResults], {type: "text/plain;charset=utf-8"});
 
-  if ((formJSON["id_contratacao_ata_registro"] == "") || (formJSON["numero_ata_registro"] == "") || (formJSON["ano_ata_registro"] == "")
+  if ((formJSON["id_contratacao_ata_registro"] == "") || (formJSON["cnpj_ug_ata_registro"] == "") || (formJSON["numero_ata_registro"] == "") || (formJSON["ano_ata_registro"] == "")
   || (formJSON["valor_ata_registro"] == "") || (formJSON["data_inicio_ata_registro"] == "") || (formJSON["data_fim_ata_registro"] == "")) { 
     isValid = false;
     toastError(elementValue);
@@ -457,6 +462,6 @@ $(document).ready(function(){
   });
 });
 
-$("#cnpj_ug_procedimento, #cnpj_ug_cadastro_orgao, #cnpj_ug_contrato").blur(function(){
+$("#cnpj_ug_procedimento, #cnpj_ug_resultado, #cnpj_ug_ata_registro, #cnpj_ug_cadastro_orgao, #cnpj_ug_contrato").blur(function(){
   validarCNPJ($(this).val());
 });
